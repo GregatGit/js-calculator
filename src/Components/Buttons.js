@@ -20,19 +20,22 @@ const Buttons = ({ func }) => {
         <Button value="1" func={func} id="one"/>
         <Button value="2" func={func} id="two"/>
         <Button value="3" func={func} id="three"/>
-        <Button value="-" func={func} id="minus"/>
+        <Button value="-" func={func} id="subtract"/>
       </div>
       <div>
         <Button value="0" func={func} id="zero" />
         <Button value="." func={func} id="decimal" />
         <Button value="=" func={func} id="equals" />
-        <Button value="+" func={func} id="plus" />
+        <Button value="+" func={func} id="add" />
       </div>
       <div>
         <Button value="M" func={func}  id="memory" />
         <Button value="M+" func={func} id="memoryPlus" />
         <Button value="MR" func={func} id="memoryRecall" />
         <Button value="MC" func={func} id="memoryClear" />
+      </div>
+      <div>
+        <Button value="clear" func={func} id="clear" />
       </div>
     </div>
   )
