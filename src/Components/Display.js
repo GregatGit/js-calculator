@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Display = () => {
+const Display = ({ input = 0 }) => {
   return (
     <div>
-      <input className="c-display" readOnly placeholder="0" type="text"/>
+      <input className="c-display" placeholder="0" readOnly type="text" value={input}/>
     </div>
   )
 }
