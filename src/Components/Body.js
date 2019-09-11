@@ -5,9 +5,13 @@ import './styles.scss'
 
 const Body = () => {
 
-  const [input, setInput] = useState([])
+  const [input, setInput] = useState(null)
+
   const buttonPush = str => {
-    setInput(str)
+    if(str === 'clear'){
+      setInput(0)
+    }else {
+    setInput(str)}
   }
 
   return (
