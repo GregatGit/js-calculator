@@ -3,7 +3,7 @@ import './styles.scss'
 
 const Button = ({value = 1, id, func}) => {
   return (
-    <button onClick={() => func(id)} className="c-button">
+    <button onClick={() => func(value)} className="c-button">
       {value}
     </button>
   )
