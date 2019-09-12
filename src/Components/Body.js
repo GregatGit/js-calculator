@@ -5,12 +5,12 @@ import './styles.scss'
 
 const Body = () => {
 
-  const [input, setInput] = useState('')
+  const [display, setDisplay] = useState('') 
   const [equation, setEquation] = useState([])
 
   const buttonPush = str => {
     if(str === 'clear'){ // reset all
-      setInput(0)
+      setDisplay(0)
       setEquation([])
       return
     }
@@ -28,20 +28,20 @@ const Body = () => {
     if (str === '='){
       let arr = [...equation].join('')
       newChar = eval(arr).toFixed(4)
-      setInput(newChar)
+      setDisplay(newChar)
       setEquation([])
       return
     }
     setEquation([...equation, newChar])
     console.log(equation)
     
-    setInput(str)
+    setDisplay(str)
   }
 
   return (
     <div className="c-body">
       <h1>JS Calulator</h1>
-      <Display input={input}/>
+      <Display display={display}/>
       <Buttons func={buttonPush} />
       
     </div>
