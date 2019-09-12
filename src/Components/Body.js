@@ -27,7 +27,7 @@ const Body = () => {
 
     if (str === '='){
       let arr = [...equation].join('')
-      newChar = eval(arr)
+      newChar = eval(arr).toFixed(4)
       setInput(newChar)
       setEquation([])
       return
