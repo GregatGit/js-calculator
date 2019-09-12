@@ -21,6 +21,8 @@ const Body = () => {
     if (str === '='){ // do the sum once = is pressed
       let arr = [...equation].join('')
       newChar = eval(arr).toFixed(4)
+      newChar = parseFloat(newChar) // remove trailing 000
+      newChar = newChar.toString() // turn back to string
       setDisplay(newChar)
       setEquation([])
       setJoin(false)
