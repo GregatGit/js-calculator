@@ -19,6 +19,9 @@ const Body = () => {
       return
     }
     if (str === '='){ // do the sum once = is pressed
+      if (equation.length > 3){ // must be something to equate
+        return
+      }
       let arr = [...equation].join('')
       newChar = eval(arr).toFixed(4)
       newChar = parseFloat(newChar) // remove trailing 000
@@ -42,7 +45,9 @@ const Body = () => {
       return
     }
 
-    
+    if (str === '+'){
+      setJoin(false)
+    }
     
     if (str === '✖'){
       newChar = '*'
