@@ -10,6 +10,7 @@ const Body = () => {
   const [join, setJoin] = useState(false) // a flag for nums > 1 char
   const nums = ['1','2','3','4','5','6','7','8','9', '0', '.']
   const startOfSum =['1','2','3','4','5','6','7','8','9', '.']
+  const symbols = ['-', '+', '*', '/', '=']
 
   const buttonPush = str => {
     let newChar = str // replace str if needed
@@ -27,10 +28,8 @@ const Body = () => {
       setJoin(false)
       return
     }
+
     if (str === '='){ // do the sum once = is pressed
-      if (equation.length === 0){ // must be something to equate
-        return
-      }
       let arr = [...equation].join('')
       newChar = eval(arr).toFixed(4)
       newChar = parseFloat(newChar) // remove trailing 000
@@ -73,7 +72,7 @@ const Body = () => {
 
     setEquation([...equation, newChar])
     console.log(equation)
-    
+    if (symbols.indexOf(newChar) !== -1) return
     setDisplay(str)
   }
 
