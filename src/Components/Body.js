@@ -9,9 +9,18 @@ const Body = () => {
   const [equation, setEquation] = useState([])
   const [join, setJoin] = useState(false) // a flag for nums > 1 char
   const nums = ['1','2','3','4','5','6','7','8','9', '0', '.']
+  const startOfSum =['1','2','3','4','5','6','7','8','9', '.']
 
   const buttonPush = str => {
     let newChar = str // replace str if needed
+
+    if (equation.length === 0){ // must start with one of these
+      if (startOfSum.indexOf(str) === -1) return 
+    }
+    if (str === '0'){// make sure 0 is ok no 00
+      if(equation[equation.length - 1] === '0' || equation.length === 0) return
+    }
+
     if(str === 'clear'){ // reset all
       setDisplay(0)
       setEquation([])
@@ -19,7 +28,7 @@ const Body = () => {
       return
     }
     if (str === '='){ // do the sum once = is pressed
-      if (equation.length > 3){ // must be something to equate
+      if (equation.length === 0){ // must be something to equate
         return
       }
       let arr = [...equation].join('')
