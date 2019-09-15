@@ -2,16 +2,22 @@ import React, { useState} from 'react'
 import Buttons from './Buttons'
 import Display from './Display'
 import { connect } from 'react-redux'
+import { buttonPressed, lastPressed } from '../actions'
 import { nums, symbols, startOfSum } from '../utils'
 import './styles.scss'
 
-const Body = ({ equation }) => {
+const Body = ({ theEquation, buttonPressed, lastPressed }) => {
+  console.log(theEquation)
 
   const [display, setDisplay] = useState('') // what is shown
   const [equation, setEquation] = useState([])
   const [join, setJoin] = useState(false) // a flag for nums > 1 char
   
-  const buttonPush = str => {
+  const buttonPush = (str) => {
+    buttonPressed(str)
+    lastPressed(str)
+  }
+  const buttonPushA = str => {
     let newChar = str // replace str if needed
 
     if (equation.length === 0){ // must start with one of these
@@ -93,7 +99,7 @@ const Body = ({ equation }) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    equation: state.equation
+    theEquation: state.equation
   }
 }
-export default connect(mapStateToProps)(Body)
+export default connect(mapStateToProps, { buttonPressed, lastPressed })(Body)
