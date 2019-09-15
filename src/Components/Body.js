@@ -1,10 +1,11 @@
 import React, { useState} from 'react'
 import Buttons from './Buttons'
 import Display from './Display'
+import { connect } from 'react-redux'
 import { nums, symbols, startOfSum } from '../utils'
 import './styles.scss'
 
-const Body = () => {
+const Body = ({ equation }) => {
 
   const [display, setDisplay] = useState('') // what is shown
   const [equation, setEquation] = useState([])
@@ -90,4 +91,9 @@ const Body = () => {
   )
 }
 
-export default Body
+const mapStateToProps = (state, ownProps) => {
+  return {
+    equation: state.equation
+  }
+}
+export default connect(mapStateToProps)(Body)
