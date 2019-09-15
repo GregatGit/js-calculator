@@ -6,7 +6,7 @@ import { buttonPressed, lastPressed } from '../actions'
 import { nums, symbols, startOfSum } from '../utils'
 import './styles.scss'
 
-const Body = ({ theEquation, buttonPressed, lastPressed }) => {
+const Body = ({ theEquation, buttonPressed, lastPressed, myDisplay }) => {
   console.log(theEquation)
 
   const [display, setDisplay] = useState('') // what is shown
@@ -90,7 +90,7 @@ const Body = ({ theEquation, buttonPressed, lastPressed }) => {
   return (
     <div className="c-body">
       <h1>JS Calulator</h1>
-      <Display display={display}/>
+      <Display display={myDisplay}/>
       <Buttons func={buttonPush} />
       
     </div>
@@ -99,7 +99,8 @@ const Body = ({ theEquation, buttonPressed, lastPressed }) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    theEquation: state.equation
+    theEquation: state.equation,
+    myDisplay: state.myDisplay
   }
 }
 export default connect(mapStateToProps, { buttonPressed, lastPressed })(Body)
