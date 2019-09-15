@@ -1,5 +1,5 @@
 
-export function (state = 0, action) {
+export default function (state = 0, action) {
   switch (action.payload) {
     case 'value':
       
