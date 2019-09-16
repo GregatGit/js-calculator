@@ -24,12 +24,12 @@ export function checkValue(value) {
     }
 */
 
-export function decideValue(newValue, lastEntry) {
+export function decideValue(newValue, lastEntry, lastPress) {
+  console.table({newValue, lastEntry})
   let actionRequired = false
   let replace = false
-  let display = undefined
+  let toDisplay = undefined
   let value = undefined
-  console.log(typeof lastEntry)
   switch (newValue) {
     case '1':
     case '2':
@@ -41,12 +41,12 @@ export function decideValue(newValue, lastEntry) {
     case '8':
     case '9':
       actionRequired = true
-      if (nums.indexOf(lastEntry) !== -1) {
+      if (nums.indexOf(lastPress) !== -1) {
         replace = true
-        display = lastEntry + newValue
+        toDisplay = lastEntry + newValue
         value = lastEntry + newValue
       } else {
-        display = newValue
+        toDisplay = newValue
         value = newValue
       }
       break
@@ -58,7 +58,7 @@ export function decideValue(newValue, lastEntry) {
   return {
     actionRequired,
     replace,
-    display,
+    toDisplay,
     value,
   }
 }

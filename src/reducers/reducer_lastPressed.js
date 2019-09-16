@@ -1,7 +1,7 @@
 import { LAST_PRESSED } from '../actions'
 
 
-export default function (state = null, action) {
+export default function (state = 'empty', action) {
   switch (action.type) {
     case LAST_PRESSED:
         return action.payload

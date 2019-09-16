@@ -1,21 +1,26 @@
-import React, { useState} from 'react'
+import React from 'react'
 import Buttons from './Buttons'
 import Display from './Display'
 import { connect } from 'react-redux'
-import { buttonPressed, lastPressed, display } from '../actions'
+import { replaceLastEntry, buttonPressed, lastPressed, display } from '../actions'
 import { decideValue, checkValue } from '../utils'
 import './styles.scss'
 
-const Body = ({ lastValue, theEquation, buttonPressed, lastPressed, myDisplay, display }) => {
+const Body = ({ replaceLastEntry, theEquation, buttonPressed, lastPressed, myDisplay, display, lastValue }) => {
   console.log(theEquation)
   
   const buttonPush = (str) => {
     if(!checkValue(str)) return // only deal wiht nums and symbols
-    const results = decideValue(str, lastValue)
-    console.log(results)
-    buttonPressed(str)
+    const { actionRequired, replace, toDisplay, value } = decideValue(str, theEquation[theEquation.length - 1], lastValue)
+  
+    if(!actionRequired) return
     lastPressed(str)
-    display(str)
+    if(replace){
+      replaceLastEntry(value)
+    } else {
+      buttonPressed(str)
+    }
+    if(toDisplay) {display(toDisplay)}
   }
   
 
@@ -36,4 +41,4 @@ const mapStateToProps = (state, ownProps) => {
     lastValue: state.lastPressed
   }
 }
-export default connect(mapStateToProps, { buttonPressed, lastPressed, display })(Body)
+export default connect(mapStateToProps, { buttonPressed, lastPressed, display, replaceLastEntry })(Body)
