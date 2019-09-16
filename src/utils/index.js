@@ -1,6 +1,15 @@
-export const nums = ['1','2','3','4','5','6','7','8','9', '0', '.']
+export const nums = ['1','2','3','4','5','6','7','8','9']
 export  const startOfSum =['1','2','3','4','5','6','7','8','9', '.']
 export  const symbols = ['-', '+', '*', '/', '=']
+
+const decimal = '.'
+const zero = '0'
+
+const all = [zero, ...nums, ...symbols, decimal]
+
+export function checkValue(value) {
+  return all.indexOf(value) !== -1
+}
 
 function handleMinus(symbol, arr, display) {
   if (arr.length === 0) return arr
