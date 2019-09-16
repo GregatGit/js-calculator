@@ -1,11 +1,13 @@
 import React from 'react'
 import Button from './Button'
-
-const Buttons = ({ func }) => {
+import { connect } from 'react-redux'
+import { oneToNine } from '../actions'
+const Buttons = ({ func, oneToNine, equation }) => {
+  let lastNum = equation[equation.length - 1] || undefined
   return (
     <div>
       <div>
-        <Button value="7" func={func} id="seven" />
+        <button className="c-button" value="7" onClick={() => oneToNine('7', lastNum)} id="seven" >7</button>
         <Button value="8" func={func} id="eight" />
         <Button value="9" func={func} id="nine" />
         <Button value="/" func={func} id="divide" />
@@ -41,4 +43,10 @@ const Buttons = ({ func }) => {
   )
 }
 
-export default Buttons
+const mapStateToProps = (state, ownProps) => {
+  return {
+    equation: state.equation
+  }
+}
+export default connect(mapStateToProps, { oneToNine } )(Buttons)
+

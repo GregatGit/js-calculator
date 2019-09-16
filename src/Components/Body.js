@@ -7,8 +7,7 @@ import { decideValue, checkValue } from '../utils'
 import './styles.scss'
 
 const Body = ({ replaceLastEntry, theEquation, buttonPressed, lastPressed, myDisplay, display, lastValue }) => {
-  console.log(theEquation)
-  
+   
   const buttonPush = (str) => {
     if(!checkValue(str)) return // only deal wiht nums and symbols
     const { actionRequired, replace, toDisplay, value } = decideValue(str, theEquation[theEquation.length - 1], lastValue)

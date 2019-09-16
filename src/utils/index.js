@@ -25,7 +25,7 @@ export function checkValue(value) {
 */
 
 export function decideValue(newValue, lastEntry, lastPress) {
-  console.table({newValue, lastEntry})
+  console.table({newValue, lastEntry, lastPress})
   let actionRequired = false
   let replace = false
   let toDisplay = undefined
