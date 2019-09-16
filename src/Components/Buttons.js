@@ -8,7 +8,7 @@ const Buttons = ({ func }) => {
         <Button value="7" func={func} id="seven" />
         <Button value="8" func={func} id="eight" />
         <Button value="9" func={func} id="nine" />
-        <Button value="÷" func={func} id="divide" />
+        <Button value="/" func={func} id="divide" />
       </div>
       <div>
         <Button value="4" func={func} id="four" />
