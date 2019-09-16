@@ -3,7 +3,6 @@ export const LAST_PRESSED = 'LAST_PRESSED'
 export const DISPLAY = 'DISPLAY'
 
 export function display(value) {
-  console.log('boom', value)
   return {
     type: DISPLAY,
     payload: value

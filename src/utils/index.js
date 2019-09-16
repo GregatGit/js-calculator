@@ -29,7 +29,7 @@ export function decideValue(newValue, lastEntry) {
   let replace = false
   let display = undefined
   let value = undefined
-
+  console.log(typeof lastEntry)
   switch (newValue) {
     case '1':
     case '2':
