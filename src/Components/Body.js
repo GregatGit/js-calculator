@@ -13,18 +13,18 @@ const Body = () => {
   const buttonPush = str => {
     let newChar = str // replace str if needed
 
+    if(str === 'clear'){ // reset all
+      console.log('boom')
+      setDisplay(0)
+      setEquation([])
+      setJoin(false)
+      return
+    }
     if (equation.length === 0){ // must start with one of these
       if (startOfSum.indexOf(str) === -1) return 
     }
     if (str === '0'){// make sure 0 is ok no 00
       if(equation[equation.length - 1] === '0' || equation.length === 0) return
-    }
-
-    if(str === 'clear'){ // reset all
-      setDisplay(0)
-      setEquation([])
-      setJoin(false)
-      return
     }
 
     if (str === '='){ // do the sum once = is pressed
@@ -42,6 +42,10 @@ const Body = () => {
       setEquation([])
       setJoin(false)
       return
+    }
+
+    if (str === '.'){ // deal with decimals
+      
     }
 
     if (nums.indexOf(str) !== -1){ // if num is pushed
