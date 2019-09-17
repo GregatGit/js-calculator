@@ -9,19 +9,20 @@ const Body = () => {
   const [display, setDisplay] = useState('') // what is shown
   const [equation, setEquation] = useState([])
   const [join, setJoin] = useState(false) // a flag for nums > 1 char
-  
+
   const buttonPush = str => {
     let newChar = str // replace str if needed
 
     if (str === 'clear') {
       // reset all
-      setDisplay('')
+      setDisplay('0')
       setEquation([])
       setJoin(false)
       return
     }
 
-    if (str === '.') { // no extra decimals
+    if (str === '.') {
+      // no extra decimals
       if (equation.length > 0) {
         let temp = equation[equation.length - 1]
         if (temp.indexOf('.') !== -1) return
@@ -29,11 +30,9 @@ const Body = () => {
     }
 
     if (equation.length === 0) {
-      console.log('d', display)
       // must start with one of these
       if (startOfSum.indexOf(str) === -1 && display === '') return
-      if (mathSymbols.indexOf(str) !== -1){
-        console.log('boooo')
+      if (mathSymbols.indexOf(str) !== -1) {
         const startArr = [display]
         setEquation([...startArr, str])
         return
@@ -48,6 +47,9 @@ const Body = () => {
     if (str === '=') {
       // do the sum once = is pressed
       let checkForSymbol = equation[equation.length - 1]
+      // don't evaulate if trailing with -+*/
+      if (mathSymbols.indexOf(checkForSymbol) !== -1) return
+
       if (symbols.indexOf(checkForSymbol) !== -1) {
         setEquation([...equation, display])
       }
@@ -75,32 +77,24 @@ const Body = () => {
       return
     }
 
-    if (str === '+') {
-      // if (last === '-' || last === '/' || last === '*' || last === '+'){
-      //   newArr.pop()
-      // }
+    if (mathSymbols.indexOf(str) !== -1) {
       setJoin(false)
+      const newArr = [...equation]
+      const last = newArr[newArr.length - 1]
+      // check if the last pushed was +-*/
+      if (mathSymbols.indexOf(last) !== -1) {
+        if (str === '-') {
+          setEquation([...newArr, str])
+          return
+        }
+        newArr.pop()
+        setEquation([...newArr, str])
+        return
+      } else {
+        setEquation([...newArr, str])
+        return
+      }
     }
-
-    if (str === '✖') {
-      // if (last === '-' || last === '/' || last === '*' || last === '+'){
-      //   newArr.pop()
-      // }
-      newChar = '*'
-      setJoin(false)
-    }
-    if (str === '÷') {
-      newChar = '/'
-      setJoin(false)
-    }
-    if (str === '➖') {
-      newChar = '-'
-      setJoin(false)
-    }
-
-    setEquation([...equation, newChar])
-    if (symbols.indexOf(newChar) !== -1) return
-    setDisplay(str)
   }
 
   return (
