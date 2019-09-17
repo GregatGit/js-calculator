@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.scss'
 
-const Button = ({ value = 1, id, func }) => {
+const Button = ({ value = '0', id, func, style = 'c-button' }) => {
   let show = value
   if(value === '-'){
     show = '➖'
@@ -16,7 +16,7 @@ const Button = ({ value = 1, id, func }) => {
     show = '0'
   }
   return (
-    <button id={id} onClick={() => func(value)} className="c-button">
+    <button id={id} onClick={() => func(value)} className={style}>
       {show}
     </button>
   )
